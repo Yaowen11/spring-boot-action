@@ -6,9 +6,30 @@ package com.example.demo;
  */
 public interface StoreDataService {
     /**
-     * transaction insert
+     * index insert
      * @param profile profile
      * @return id
      */
-    int insert(Profile profile);
+    int indexInsert(Profile profile);
+
+    /**
+     * name param insert
+     * @param profile
+     * @return id
+     */
+    int nameParamInsert(Profile profile);
+
+    /**
+     * edit transaction insert
+     * @param profile profile
+     * @return id
+     */
+    int editTransactionInsert(Profile profile);
+
+    /**
+     * annotation transaction insert
+     * @param profile profile
+     * @return id
+     */
+    int annotationTransactionInsert(Profile profile);
 }
