@@ -40,13 +40,14 @@ public class StoreDataServiceImpl implements StoreDataService {
 
     @Override
     public int indexInsert(Profile profile) {
-        final String insertSql = "insert into profile (first_name, last_name, password) values (?, ?, ?)";
+        final String insertSql = "insert into profile (first_name, last_name, username, password) values (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, profile.getFirstName());
             preparedStatement.setString(2, profile.getLastName());
-            preparedStatement.setString(3, profile.getPassword());
+            preparedStatement.setString(3, profile.getUsername());
+            preparedStatement.setString(4, profile.getPassword());
             return preparedStatement;
         }, keyHolder);
         return Objects.requireNonNull(keyHolder.getKey()).intValue();
@@ -54,10 +55,12 @@ public class StoreDataServiceImpl implements StoreDataService {
 
     @Override
     public int nameParamInsert(Profile profile) {
-        final String sql = "insert into profile (first_name,last_name,password) values (:firstName,:lastName,:password)";
+        final String sql = "insert into profile (first_name,last_name, username, password) " +
+                "values (:firstName,:lastName, :username, :password)";
         Map<String, Object> nameParams = new HashMap<>(3);
         nameParams.put("firstName", profile.getFirstName());
         nameParams.put("lastName", profile.getLastName());
+        nameParams.put("username", profile.getUsername());
         nameParams.put("password", profile.getPassword());
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new SqlParameterSource() {
