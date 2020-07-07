@@ -18,7 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Log
 public class ErrorController {
 
-    @Autowired private ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
+
+    @Autowired
+    public ErrorController(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
+    }
 
     @GetMapping("/bad")
     public String bad() {

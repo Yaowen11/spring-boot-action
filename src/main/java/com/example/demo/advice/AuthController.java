@@ -1,10 +1,10 @@
 package com.example.demo.advice;
 
-import com.adobe.xmp.impl.Base64;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -15,11 +15,15 @@ import java.util.Date;
 @Log
 public class AuthController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public AuthController(UserRepository userRepository, UserService userService) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+    }
 
     @PostMapping("/auth/store")
     public String auth(@RequestParam String username, @RequestParam String password) {
@@ -29,18 +33,14 @@ public class AuthController {
         User storeUser = userRepository.save(user);
         log.info("username: " + username + " password: " + password);
         log.info("store user id: " + storeUser.getId());
-        String token = Base64.encode(storeUser.toString());
+        String token = Base64.getEncoder().encodeToString(storeUser.toString().getBytes());
         log.info("token: " + token);
         return token;
     }
 
-    @GetMapping("/show")
-    public User show(@ModelAttribute("token") User user) {
-        return user;
-    }
-
-    public void sayHi(Date date) {
-        log.info("date: " + date.toString());
+    @GetMapping("/say")
+    public void sayHi(@RequestParam Date date) {
+        log.info("date: " + date);
         userService.sayHi();
     }
 }
