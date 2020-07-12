@@ -1,11 +1,11 @@
 spring:
   profiles:
-    active: test
+    active: dev
 ---
 spring:
+  profiles: dev
   datasource:
     url: jdbc:h2:mem:test_db
     schema: classpath:schema.sql
     initialization-mode: embedded
     driver-class-name: org.h2.Driver
-  profiles: test

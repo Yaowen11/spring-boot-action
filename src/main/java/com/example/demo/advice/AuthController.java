@@ -5,6 +5,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -20,6 +21,13 @@ public class AuthController {
 
     @Autowired
     private UserService userService;
+
+    @ModelAttribute("token")
+    public User modelAttribute (HttpServletRequest httpServletRequest) {
+        String bearerToken = httpServletRequest.getHeader("token");
+        int id = Integer.parseInt(new String(org.bouncycastle.util.encoders.Base64.decode(bearerToken)));
+        return userRepository.getOne(id);
+    }
 
     @PostMapping("/auth/store")
     public String auth(@RequestParam String username, @RequestParam String password) {
@@ -37,10 +45,5 @@ public class AuthController {
     @GetMapping("/show")
     public User show(@ModelAttribute("token") User user) {
         return user;
-    }
-
-    public void sayHi(Date date) {
-        log.info("date: " + date.toString());
-        userService.sayHi();
     }
 }

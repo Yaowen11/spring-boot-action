@@ -27,13 +27,6 @@ public class AppWideExceptionHandler {
         this.userRepository = userRepository;
     }
 
-    @ModelAttribute("token")
-    public User modelAttribute (HttpServletRequest httpServletRequest) {
-        String bearerToken = httpServletRequest.getHeader("token");
-        int id = Integer.parseInt(new String(Base64.decode(bearerToken)));
-        return userRepository.getOne(id);
-    }
-
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void runTimeException(Exception e) {
