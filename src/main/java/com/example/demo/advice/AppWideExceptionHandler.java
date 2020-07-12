@@ -1,14 +1,10 @@
 package com.example.demo.advice;
 
 import lombok.extern.java.Log;
-import org.bouncycastle.util.encoders.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,13 +16,6 @@ import java.util.Date;
 @Log
 public class AppWideExceptionHandler {
 
-    private final UserRepository userRepository;
-
-    @Autowired
-    public AppWideExceptionHandler(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void runTimeException(Exception e) {
@@ -35,7 +24,7 @@ public class AppWideExceptionHandler {
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd H:m:s");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
