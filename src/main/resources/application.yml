@@ -6,6 +6,11 @@ spring:
   profiles: dev
   datasource:
     url: jdbc:h2:mem:test_db
-    schema: classpath:schema.sql
     initialization-mode: embedded
     driver-class-name: org.h2.Driver
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+    continue-on-error: false
+    platform: h2
+  jpa:
+    show-sql: false

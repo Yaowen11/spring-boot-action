@@ -16,12 +16,9 @@ public class AuthController {
 
     private final UserRepository userRepository;
 
-    private final UserService userService;
-
     @Autowired
-    public AuthController(UserRepository userRepository, UserService userService) {
+    public AuthController(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userService = userService;
     }
 
     @ModelAttribute("token")
@@ -44,7 +41,7 @@ public class AuthController {
         return token;
     }
 
-    @GetMapping("/show")
+    @GetMapping("/advice/show")
     public User show(@ModelAttribute("token") User user) {
         return user;
     }

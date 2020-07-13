@@ -14,6 +14,7 @@ import java.security.Principal;
 @Controller
 @Log
 public class AuthenticateController {
+
     @GetMapping("/login")
     public String login() {
         return "secure/login";
@@ -22,8 +23,19 @@ public class AuthenticateController {
     @GetMapping("/me")
     public String me(Model model,
                      Principal principal) {
+        log.info("principal is null: " + (principal == null));
         log.info("principal: " + principal.toString());
         model.addAttribute("name", principal.getName());
         return "secure/me";
     }
+
+    @GetMapping("/auth/admin")
+    public String admin() { return "secure/admin"; }
+
+    @GetMapping("/auth/user")
+    public String user() { return "secure/user"; }
+
+    @GetMapping("/auth/manager")
+    public String manager() { return "secure/manager"; }
+
 }
