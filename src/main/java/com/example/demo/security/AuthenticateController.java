@@ -29,8 +29,7 @@ public class AuthenticateController {
         return "secure/me";
     }
 
-    @GetMapping("/auth/admin")
-    public String admin() { return "secure/admin"; }
+
 
     @GetMapping("/auth/user")
     public String user() { return "secure/user"; }

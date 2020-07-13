@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>member-register</title>
+</head>
+<body>
+<form th:action="@{/member/store}" method="post">
+    <input type="hidden" name="enable" value="true">
+    <p>username: <label>
+        username:
+        <input name="username" type="text">
+    </label></p>
+    <p>password: <label>
+        password:
+        <input name="password" type="password">
+    </label></p>
+    <p><input type="submit" value="注册"></p>
+</form>
+</body>
+</html>
