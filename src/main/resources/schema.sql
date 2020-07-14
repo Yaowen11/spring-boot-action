@@ -12,7 +12,7 @@ create table user
 (
     id int auto_increment primary key,
     username varchar(255),
-    password varchar(64),
+    password varchar(64)
 );
 
 create table member
@@ -21,14 +21,14 @@ create table member
     username varchar(255),
     password varchar(64),
     enable char(5)
-)
+);
 
 create table member_authority
 (
     id int auto_increment primary key,
     username varchar(255),
     authority varchar(255)
-)
+);
 
 create table admin
 (
