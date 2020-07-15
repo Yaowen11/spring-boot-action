@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${type} + ' ' + ${role}"></title>
+    </head>
+    <body>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="退出">
+        </form>
+        <div>
+            <h3 th:text="'current auth name is ' + ${name}"></h3>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            Hello <span sec:authentication="name"></span>
+        </div>
+        <span sec:authorize-url="'/auth/'+${type}+'/user'">
+            <a th:href="@{'/auth/' + ${type} + '/user'}">user-url</a>
+        </span>
+        <span sec:authorize-url="'/auth/'+${type}+'/admin'">
+            <a th:href="@{'/auth/' + ${type} + '/admin'}">admin-url</a>
+        </span>
+        <span sec:authorize-url="/auth/'+${type}+'/manager'">
+            <a th:href="@{'/auth/' + ${type} + '/manager'}">manager-url</a>
+        </span>
+    </body>
+</html>

@@ -15,6 +15,35 @@ create table user
     password varchar(64)
 );
 
+create table jdbc_users
+(
+    id int auto_increment primary key,
+    username varchar(50),
+    password varchar(255),
+    enabled varchar(10)
+);
+
+create table jdbc_user_authorities
+(
+    id int auto_increment primary key,
+    username varchar(50),
+    authority varchar(255)
+);
+
+create table jdbc_groups
+(
+    id int auto_increment primary key,
+    group_name varchar(50),
+    authority varchar(255)
+);
+
+create table jdbc_user_groups
+(
+    id int auto_increment primary key key,
+    group_id int,
+    username varchar(50)
+);
+
 create table member
 (
     id int auto_increment primary key,

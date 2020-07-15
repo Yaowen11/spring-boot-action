@@ -1,15 +1,15 @@
-package com.example.demo.security.mem;
-
+package com.example.demo.security.config;
+/**
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/**
+
  * @author zyw
  * @date 2020/7/12 10:45
- */
+
 @EnableWebSecurity
 public class MemoryAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -43,3 +43,4 @@ public class MemoryAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 }
+ */
