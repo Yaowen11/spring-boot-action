@@ -7,4 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date 2020/7/15 21:55
  */
 public interface JdbcUsersRepository extends JpaRepository<JdbcUsers, Integer> {
+    /**
+     * find first
+     * @param username username
+     * @return JdbcUsers
+     */
+    JdbcUsers findFirstByUsername(String username);
 }

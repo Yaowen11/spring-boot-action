@@ -5,16 +5,16 @@
     <title>member-register</title>
 </head>
 <body>
-<form th:action="@{/jdbc/user/store}" method="post">
-    <input type="hidden" name="enable" value="true">
-    <p>username: <label>
-        username:
-        <input name="username" type="text">
-    </label></p>
-    <p>password: <label>
-        password:
-        <input name="password" type="password">
-    </label></p>
+<form th:action="@{/jdbc/user/store}" method="post" th:object="${jdbcUsers}">
+    <label th:class="${#fields.hasErrors('username')}?'error'">username:
+        <input type="text" th:field="*{username}"><br/>
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    </label>
+    <label th:class="${#fields.hasErrors('password')}? 'error'">Password:
+        <input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}? 'error'" /><br/>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </label>
+    <input type="hidden" name="enabled" value="true">
     <p><input type="submit" value="注册"></p>
 </form>
 </body>

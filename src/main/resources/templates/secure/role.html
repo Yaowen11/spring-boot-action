@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <title th:text="${type} + ' ' + ${role}"></title>
     </head>
@@ -19,7 +19,7 @@
         <span sec:authorize-url="'/auth/'+${type}+'/admin'">
             <a th:href="@{'/auth/' + ${type} + '/admin'}">admin-url</a>
         </span>
-        <span sec:authorize-url="/auth/'+${type}+'/manager'">
+        <span sec:authorize-url="'/auth/'+${type}+'/manager'">
             <a th:href="@{'/auth/' + ${type} + '/manager'}">manager-url</a>
         </span>
     </body>

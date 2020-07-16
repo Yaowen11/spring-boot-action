@@ -12,12 +12,12 @@ import java.util.Base64;
  */
 @RestController
 @Log
-public class AuthController {
+public class AdviceAuthController {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public AuthController(UserRepository userRepository) {
+    public AdviceAuthController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

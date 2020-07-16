@@ -43,10 +43,17 @@ public class JdbcAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe().tokenValiditySeconds(60 * 60 * 24).key("jdbc")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/jdbc/user").hasAnyRole("JDBC_USER", "JDBC_ADMIN", "JDBC_MANAGER")
-                .antMatchers("/auth/jdbc/admin").hasAnyRole("JDBC_ADMIN", "JDBC_MANAGER")
-                .antMatchers("/auth/jdbc/manager").hasAnyRole("JDBC_MANAGER")
+                .antMatchers("/auth/jdbc/user")
+                .hasAnyRole("JDBC_USER", "JDBC_ADMIN", "JDBC_MANAGER", "GROUP_USER", "GROUP_ADMIN", "GROUP_MANAGER")
+                .antMatchers("/auth/jdbc/admin")
+                .hasAnyRole("JDBC_ADMIN", "JDBC_MANAGER", "GROUP_ADMIN", "GROUP_MANAGER")
+                .antMatchers("/auth/jdbc/manager")
+                .hasAnyRole("JDBC_MANAGER", "GROUP_MANAGER")
                 .and()
-                .logout().logoutSuccessUrl("/");
+                .logout().logoutSuccessUrl("/")
+                .and()
+                .cors()
+                .and()
+                .csrf().disable();
     }
 }

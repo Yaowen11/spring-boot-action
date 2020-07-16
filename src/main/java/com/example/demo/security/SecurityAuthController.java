@@ -15,7 +15,7 @@ import java.security.Principal;
  */
 @Controller
 @Log
-public class AuthController {
+public class SecurityAuthController {
 
     @GetMapping("/login")
     public String login() {

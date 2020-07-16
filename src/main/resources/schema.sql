@@ -39,7 +39,7 @@ create table jdbc_groups
 
 create table jdbc_user_groups
 (
-    id int auto_increment primary key key,
+    id int auto_increment primary key,
     group_id int,
     username varchar(50)
 );

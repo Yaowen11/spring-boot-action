@@ -12,7 +12,7 @@ import java.util.Date;
  * @author zyw
  * @date 2020/7/6 21:09
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 @Log
 public class AppWideExceptionHandler {
 
