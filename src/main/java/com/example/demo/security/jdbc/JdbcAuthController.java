@@ -96,7 +96,6 @@ public class JdbcAuthController {
     }
 
     @PostMapping("/generate/{size}")
-    @CrossOrigin(origins = "*")
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public void generate(@PathVariable int size) {
@@ -112,7 +111,6 @@ public class JdbcAuthController {
     @DeleteMapping("/flush")
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @CrossOrigin(origins = "*")
     public void flushUser() {
         jdbcUsersRepository.deleteAll();
     }
