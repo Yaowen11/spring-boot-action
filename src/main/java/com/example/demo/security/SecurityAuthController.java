@@ -26,9 +26,9 @@ public class SecurityAuthController {
     public String me(Model model,
                      Principal principal) {
         log.info("principal is null: " + (principal == null));
-        log.info("principal: " + principal.toString());
+        log.info("principal: " + principal);
         model.addAttribute("name", principal.getName());
-        return "secure/me";
+        return "show";
     }
 
     @GetMapping("/auth/{type}/{role}")
@@ -44,5 +44,4 @@ public class SecurityAuthController {
         model.addAttribute("name", principal.getName());
         return "secure/role";
     }
-
 }

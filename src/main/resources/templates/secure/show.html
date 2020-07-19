@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>show user</title>
+    <title>user-show</title>
 </head>
 <body>
-<h3 th:text="'id: ' + ${user.id}"></h3>
-<h3 th:text="'username: ' + ${user.username}"></h3>
-<h3 th:text="'password: ' + ${user.password}"></h3>
+<h3 th:text="'user id: ' + ${user.id}"></h3>
+<h3 th:text="'user username: ' + ${user.username}"></h3>
+<h3 th:text="'user password: ' + ${user.password}"></h3>
+<h3 th:text="'user enabled: ' + ${user.enabled}"></h3>
 </body>
 </html>

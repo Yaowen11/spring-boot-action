@@ -23,6 +23,7 @@ import java.util.Map;
  * @date 2020/7/15 22:28
  */
 @Controller
+@RequestMapping("/jdbc")
 @Log
 public class JdbcAuthController {
 
@@ -36,14 +37,14 @@ public class JdbcAuthController {
         this.jdbcUsersRepository = jdbcUsersRepository;
     }
 
-    @GetMapping("/jdbc/register")
-    public String jdbcRegister(Model model) {
+    @GetMapping("/register")
+    public String register(Model model) {
         model.addAttribute(new JdbcUsers());
         return "secure/jdbc/register";
     }
 
-    @PostMapping("/jdbc/user/store")
-    public String jdbcUserStore(@Valid JdbcUsers users, Errors errors, RedirectAttributes model) {
+    @PostMapping("/user/store")
+    public String userStore(@Valid JdbcUsers users, Errors errors, RedirectAttributes model) {
         if (errors.hasErrors()) {
             return "redirect:/jdbc/register";
         }
@@ -55,16 +56,16 @@ public class JdbcAuthController {
         return "redirect:/jdbc/show/" + jdbcUsers.getUsername();
     }
 
-    @GetMapping("/jdbc/show/{username}")
-    public String jdbcShow(@PathVariable String username, Model model) {
+    @GetMapping("/show/{username}")
+    public String show(@PathVariable String username, Model model) {
         String userKey = "user";
         if (!model.containsAttribute(userKey)) {
             model.addAttribute(userKey, jdbcAuthService.user(username));
         }
-        return "secure/jdbc/show";
+        return "secure/show";
     }
 
-    @GetMapping("/jdbc/{auth}/list")
+    @GetMapping("/{auth}/list")
     @ResponseBody
     public List<?> jdbcGroups(@PathVariable String auth,
                               @RequestParam(required = false) String username) throws IllegalAccessException, InvocationTargetException {
@@ -89,7 +90,7 @@ public class JdbcAuthController {
         return (List<?>) usernameParamMethod.invoke(jdbcAuthService, username);
     }
 
-    @GetMapping("/jdbc/{username}/relation")
+    @GetMapping("/{username}/relation")
     @ResponseBody
     public Map<String, List<?>> userRelation(@PathVariable String username) {
         return jdbcAuthService.userRelation(username);
